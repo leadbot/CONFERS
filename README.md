@@ -1,0 +1,81 @@
+# CONFERS
+
+Structural prediction of LPMOs using the CONFERS framework
+
+
+
+⚙️ Installation ⚙️
+CONFERS is cross-platform (Windows, Linux). We recommend using Conda to manage dependencies.
+
+1. Clone the Repository
+Bash
+
+git clone https://github.com/YourUsername/CONFERS.git
+cd CONFERS
+
+2. Create the Environment
+Because deep learning libraries often differ between operating systems, we provide separate environment files. Choose the one matching your OS:
+
+Linux (Tested on Rocky Linux 8.10 "Green Obsidian"):
+conda env create -f environments/environment_unix.yml
+Windows (Tested on Windows 10 / 11):
+conda env create -f environments/environment_win.yml
+
+3. Activate the Environment
+conda activate confers_env
+
+🚀 Usage 🚀
+The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts structural features, and classifies them using a pre-trained AE-MLP model.
+
+Basic Command
+python src/confers.py --pdb_folder inputs/my_structures --outpath results/ --model_dir FedeAI_1pt6AE
+
+Arguements
+Argument	Default	Description
+Input/Output		
+--pdb_folder	Required	Path to the folder containing .pdb files to analyze.
+--outpath	CONFERS_	Directory prefix/path where output CSVs and logs will be saved.
+--model_dir	FedeAI_1pt6AE	Name of the subfolder in Model_data/ containing the trained model.
+--file_range	None	Process a subset of files (e.g., 0-100). Useful for parallel array jobs.
+Structural Parameters		
+--first_N	30	Search for the first Histidine within the first N residues (N-terminal logic).
+--max_distance	11	Max allowed distance (Å) between Histidines in the brace.
+--min_his_his_dist	5	Minimum sequence distance (residues) between the two Histidines.
+--min_beta_strands	1	Minimum number of beta-strands required to consider the fold.
+--min_beta_length	3	Minimum number of residues for a valid beta-strand.
+Analysis Options		
+--deep_learning	True	Perform classification using the neural network (True/False).
+--classification_threshold	0.7	Probability threshold (0.0-1.0) for a positive classification.
+--report_secondary_structue	True	Include detailed secondary structure metrics in the output CSV.
+--graphical_output	True	Generate plots for classifications (True/False).
+--sstype	True	Secondary structure complexity: True for simple, False for complex (DSSP detailed).
+--output	True	Write results to CSV files (True/False).
+
+Example Workflow
+To scan a directory of predicted algal proteins using the default trained model:
+
+python src/confers.py \
+  --pdb_folder ./algal_predictions \
+  --outpath ./outputs \
+  --model_dir FedeAI_1pt6AE \
+  --classification_threshold 0.8
+
+
+📊Outputs
+The tool generates two primary CSV files in your --outpath:
+
+*_LYFE_output.csv: Contains the raw geometric measurements for every protein scanned (distances, angles, beta-strand counts), regardless of classification.
+
+*_LYFE_classifications.csv: Contains only the proteins identified as targets (e.g., LPMOs) by the deep learning model, along with their predicted family class.
+
+
+⚖️ License
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+
+Academic/Non-Commercial Use: You are free to use, modify, and distribute this software.
+
+Commercial Use: Commercial use is not permitted under this license. For commercial licensing inquiries, please contact the authors.
+
+See the LICENSE file for details.
+
+
