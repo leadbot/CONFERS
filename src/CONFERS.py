@@ -16,13 +16,16 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from tqdm import trange
+from keras.models import load_model
+import joblib
+import traceback
 
 try:
     pd.set_option("future.no_silent_downcasting", True)
 except:
     pass
 
-#%% Efficient script with metadata harvest - his brace, beta strand number, beta strand length, minimum distance in residues between histidines in the brace
+#%% Efficient script with metadata harvest
 def calculate_atom_distance(residue1, residue2, atom1, atom2):
     """
     Calculate linear angstrom distance between select atom in pair of residues (X, Y)
@@ -302,7 +305,7 @@ def append_secondary_structure_to_existing_df(row_index, SS_data_list, metadata,
     # Create a temporary dataframe from the metadata list with the same number of rows as the original dataframe
     fulldata = metadata + list(SS_data_list)
     
-    # Check if data is above maximum length limit
+    #Check if data is above maximum length limit
     if len(fulldata) >= maximum_csv_length_to_report:
         print("ERROR: Length of data exceeds CSV length limit")   
     newheader = metadata_cols + [f'SS_{i + 1}' for i in range(maximum_csv_length_to_report - len(metadata_cols))]
@@ -312,18 +315,16 @@ def append_secondary_structure_to_existing_df(row_index, SS_data_list, metadata,
     #print(f"Missing length: {missing_length}, Total length of fulldata: {len(fulldata)}")  
     # Create a temporary DataFrame
     temp_df = pd.DataFrame([fulldata], columns=newheader)
-    # Ensure proper data types for the columns to avoid warnings
+    # Ensure proper data types
     for col in temp_df.columns:
-        # Change the dtype to a more specific type if necessary
+        # change the dtype to a more specific type if necessary
         if temp_df[col].dtype == 'object':
             temp_df[col] = temp_df[col].astype(str)
     
-    # Concatenate the original dataframe and the temporary dataframe
+    # Concat the original dataframe and the temporary dataframe
     dataframe = pd.concat([dataframe, temp_df], axis=0, ignore_index=True)
-    # Replace NaN values with 0 and explicitly set the dtype
+    # replace NaN values with 0
     dataframe = dataframe.fillna(0)
-    # Optionally, you can convert the DataFrame to specific types if you know what they should be
-    # For example, if you expect all values to be numeric except for certain columns
     for col in dataframe.columns:
         if col.startswith('SS_'):  # assuming SS columns should be numeric
             dataframe[col] = dataframe[col].astype(str)
@@ -395,8 +396,6 @@ def load_model_with_encoders(model_path, encoder_path, factormap_path):
     label_encoder : loaded encoder array
     """
     print("Loading deep learning model")
-    from keras.models import load_model
-    import joblib
     NNmodel=load_model(model_path)
     label_encoder = joblib.load(encoder_path)
     factor_map = joblib.load(factormap_path)
@@ -657,7 +656,6 @@ def main(folder, outpath, file_range,
              hardstop = input_dimension
 
         except Exception as e:
-             import traceback
              traceback.print_exc()
              print(f"\nCRITICAL ERROR: Could not load model. Deep learning disabled.\nError: {e}")
              deep_learning = False    
@@ -741,18 +739,18 @@ if __name__ == "__main__":
     parser.add_argument('--file_range', type=str, default=None, help='Range of files to parse (e.g., 0-20000)')
     parser.add_argument('--model_name', type=str, default="FedeAI_1pt6AE", help='Name of the subfolder in Model_data containing the model files')
 
-    # Parse the arguments
+    # parse the arguments
     args = parser.parse_args()
-    # Timing the execution
+    # timing the execution
     tic = time.perf_counter()
-    # Call the main function with the parsed arguments
+    # call the main function with the parsed arguments
     valid = main(
-        #Mandatory args
+        #mandatory args
         folder=args.pdb_folder,
         outpath=args.outpath,
         file_range=args.file_range,
 
-        #Optional args
+        #optional args
         first_N=args.first_N,
         max_distance=args.max_distance,
         min_his_his_dist=args.min_his_his_dist,
