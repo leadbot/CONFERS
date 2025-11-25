@@ -2,36 +2,34 @@
 
 Structural prediction of LPMOs using the CONFERS framework
 
+**Installation️**\
+CONFERS is cross-platform (Windows, Linux). We recommend using Conda to manage dependencies.\
 
-
-⚙️ Installation ⚙️
-CONFERS is cross-platform (Windows, Linux). We recommend using Conda to manage dependencies.
-
-1. Clone the Repository
+1. Clone the Repository\
 Bash
-
-git clone https://github.com/leadbot/CONFERS.git
+\
+git clone https://github.com/leadbot/CONFERS.git\
 cd CONFERS
-
-2. Create the Environment
+\
+2. Create the Environment\
 Choose the one matching your OS:\
-
+\
 Linux (Tested on Rocky Linux 8.10 "Green Obsidian"):\
 conda env create -f environments/environment_unix_full.yml\
 \
 Windows (Tested on Windows 10 / 11):\
 conda env create -f environments/environment_win_fast.yml\
+\
+3. Activate the Environment\
+conda activate CONFERS\
+\
+Usage\
+The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts structural features, and classifies them using a pre-trained AE-MLP model.\
+\
+Basic Command\
+python src/confers.py --pdb_folder inputs/my_structures --outpath results/ --model_dir FedeAI_1pt6AE\
 
-3. Activate the Environment
-conda activate CONFERS
-
-Usage
-The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts structural features, and classifies them using a pre-trained AE-MLP model.
-
-Basic Command
-python src/confers.py --pdb_folder inputs/my_structures --outpath results/ --model_dir FedeAI_1pt6AE
-
-### Arguments & Usage
+### Arguments & Usage\
 
 #### Input/Output
 | Argument | Default | Description |
