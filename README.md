@@ -1,6 +1,6 @@
 # CONFERS (Conserved Feature Encoding for Recognition of Structures)
 
-Structural prediction of LPMOs using the CONFERS framework
+Classification prediction of LPMOs from structures using the CONFERS framework
 
 ![Schematic of the CONFERS framework](Imgs/F1.png)
 
@@ -69,21 +69,21 @@ python src/CONFERS.py --pdb_folder Test_pdbs_immature --outpath test_results/
 | `--sstype` | `True` | Secondary structure complexity: `True` for simple, `False` for complex (DSSP detailed). |
 | `--output` | `True` | Write results to CSV files (`True`/`False`). |
 
-**Models**
-We provide two models:
-Model 1.5 (model for mature structures lacking signal peptides, recommended first_N = 3)
+**Models**\
+We provide two models:\
+Model 1.5 (model for mature structures lacking signal peptides, recommended first_N = 3)\
 Model 1.6 (default; model for immature structures with signal peptides, recommended first_N = 30)
 
 **Example Workflow**\
 To scan a directory of predicted algal proteins using the default trained model:
-
+```
 python src/confers.py
 --pdb_folder Test_pdbs_mature
 --outpath test_results
 --model_dir FedeAI_1pt5AE
 --classification_threshold 0.5
 --first_N 3
-
+```
 
 **Outputs**\
 The tool generates two primary CSV files in your --outpath:\
