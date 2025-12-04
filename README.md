@@ -37,7 +37,7 @@ The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts
 
 **Basic Command**
 ```
-python src/confers.py --pdb_folder inputs/my_structures --outpath results/
+python src/CONFERS.py --pdb_folder inputs/my_structures --outpath results/
 ```
 
 ### Arguments & Usage
