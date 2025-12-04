@@ -18,12 +18,12 @@ Choose the one matching your OS:
 
 Linux (Tested on Rocky Linux 8.10 "Green Obsidian"):
 ```
-conda env create -f environments/environment_unix_full.yml
+conda env create -f Environments/CONFERS_unix_full.yml
 ```
 
 Windows (Tested on Windows PowerShell 10 / 11):
 ```
-conda env create -f environments/environment_win_fast.yml
+conda env create -f Environments/CONFERS_win_fast.yml
 ```
 
 4. Activate the Environment
