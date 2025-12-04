@@ -1,8 +1,8 @@
-# CONFERS
+# CONFERS (Conserved Feature Encoding for Recognition of Structures)
 
 Structural prediction of LPMOs using the CONFERS framework
 
-![Description of Image](Imgs/F1.pdf)
+![Schematic of the CONFERS framework](Imgs/F1.pdf)
 
 **Installation️**\
 CONFERS is cross-platform (Windows, Linux). We recommend using Conda to manage dependencies.
