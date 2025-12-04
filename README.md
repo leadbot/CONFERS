@@ -18,12 +18,12 @@ Choose the one matching your OS:
 
 Linux (Tested on Rocky Linux 8.10 "Green Obsidian"):
 ```
-conda env create -f environments/environment_unix_full.yml
+conda env create -f Environments/CONFERS_unix_full.yml
 ```
 
 Windows (Tested on Windows PowerShell 10 / 11):
 ```
-conda env create -f environments/environment_win_fast.yml
+conda env create -f Environments/CONFERS_win_fast.yml
 ```
 
 4. Activate the Environment
@@ -37,7 +37,7 @@ The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts
 
 **Basic Command**
 ```
-python src/confers.py --pdb_folder inputs/my_structures --outpath results/
+python src/CONFERS.py --pdb_folder Test_pdbs --outpath test_results/
 ```
 
 ### Arguments & Usage
