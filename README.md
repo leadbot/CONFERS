@@ -26,21 +26,21 @@ Windows (Tested on Windows PowerShell 10 / 11):
 conda env create -f environments/environment_win_fast.yml
 ```
 
-4. Activate the Environment\
+4. Activate the Environment
 ```
 conda activate CONFERS
 ```
 
 
-Usage\
+**Usage**\
 The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts structural features, and classifies them using a pre-trained AE-MLP model.
 
-**Basic Command**\
+**Basic Command**
 ```
 python src/confers.py --pdb_folder inputs/my_structures --outpath results/
 ```
 
-### Arguments & Usage\
+### Arguments & Usage
 
 #### Input/Output
 | Argument | Default | Description |
@@ -69,7 +69,7 @@ python src/confers.py --pdb_folder inputs/my_structures --outpath results/
 | `--sstype` | `True` | Secondary structure complexity: `True` for simple, `False` for complex (DSSP detailed). |
 | `--output` | `True` | Write results to CSV files (`True`/`False`). |
 
-Example Workflow
+**Example Workflow**\
 To scan a directory of predicted algal proteins using the default trained model:
 
 python src/confers.py
