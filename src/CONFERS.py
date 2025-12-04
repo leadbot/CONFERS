@@ -723,7 +723,7 @@ if __name__ == "__main__":
 
     # Add arguments for each of the parameters
     parser.add_argument('--pdb_folder', type=str, required=True, help='Path to the folder containing PDB files')
-    parser.add_argument('--first_N', type=int, default=3, help='First N residues to search for N terminal histidine')
+    parser.add_argument('--first_N', type=int, default=30, help='First N residues to search for N terminal histidine')
     parser.add_argument('--max_distance', type=int, default=11, help='Max histidine distance')
     parser.add_argument('--min_his_his_dist', type=int, default=5, help='Min his-his distance')
     parser.add_argument('--min_beta_strands', type=int, default=1, help='Min beta strands')

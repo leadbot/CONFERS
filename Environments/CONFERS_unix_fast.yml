@@ -1,0 +1,17 @@
+name: CONFERS
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - matplotlib
+  - tqdm
+  - joblib
+  - scikit-learn
+  - mdtraj
+  - biopython
+  - pip
+  - pip:
+    - tensorflow==2.10.0
