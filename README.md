@@ -2,7 +2,7 @@
 
 Structural prediction of LPMOs using the CONFERS framework
 
-![Description of Image](Imgs/F1.svg)
+![Description of Image](Imgs/F1.pdf)
 
 **Installation️**\
 CONFERS is cross-platform (Windows, Linux). We recommend using Conda to manage dependencies.
