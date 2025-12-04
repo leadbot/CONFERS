@@ -82,7 +82,7 @@ python src/confers.py
 **Outputs**\
 The tool generates two primary CSV files in your --outpath:\
 \
-*_LYFE_output.csv: Contains the raw geometric measurements for every protein scanned (distances, angles, beta-strand counts), regardless of classification.\
+*_LYFE_output.csv: Contains the raw data for every protein scanned regardless of classification.\
 \
 *_LYFE_classifications.csv: Contains only the proteins identified as targets (e.g., LPMOs) by the deep learning model, along with their predicted family class.\
 
