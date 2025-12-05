@@ -18,7 +18,7 @@ Choose the one matching your OS:
 
 Linux (Tested on Rocky Linux 8.10 "Green Obsidian"):
 ```
-conda env create -f Environments/CONFERS_unix_full.yml
+conda env create -f Environments/CONFERS_unix_fast.yml
 ```
 
 Windows (Tested on Windows PowerShell 10 / 11):
