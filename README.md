@@ -71,8 +71,8 @@ python src/confers.py --pdb_folder Test_pdbs/Test_pdbs_mature_LPMOs_only --outpa
 
 **Models**\
 We provide two models:\
-Model 1.5 (model for mature structures lacking signal peptides, recommended first_N = 3)\
-Model 1.6 (default; model for immature structures with signal peptides, recommended first_N = 30) [IN TESTING]
+Model 1.5 (default; model for mature structures lacking signal peptides, recommended first_N = 3)\
+Model 1.6 (model for immature structures with signal peptides, recommended first_N = 30) [IN TESTING]
 
 **Example Workflow IMMATURE STRUCTURES**\
 To scan a directory of predicted algal proteins using the pre-trained model:
