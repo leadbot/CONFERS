@@ -64,10 +64,12 @@ python src/confers.py --pdb_folder Test_pdbs/Test_pdbs_mature_LPMOs_only --outpa
 | :--- | :--- | :--- |
 | `--deep_learning` | `True` | Perform classification using the neural network (`True`/`False`). |
 | `--classification_threshold`| `0.5` | Probability threshold (0.0-1.0) for a positive classification. |
-| `--report_secondary_structue`| `True` | Include detailed secondary structure metrics in the output CSV. |
-| `--graphical_output` | `True` | Generate plots for classifications (`True`/`False`). |
+| `--report_secondary_structue`| `True` | Include detailed secondary structure metrics in the output CSV.* |
+| `--graphical_output` | `True` | Generate plots for classifications (`True`/`False`).* |
 | `--sstype` | `True` | Secondary structure complexity: `True` for simple, `False` for complex (DSSP detailed). |
 | `--output` | `True` | Write results to CSV files (`True`/`False`). |
+*Turn off for faster analysis
+
 
 **Models**\
 We provide two models:\
