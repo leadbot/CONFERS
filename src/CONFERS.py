@@ -496,7 +496,8 @@ def classify_with_threshold(model, column, threshold, label_encoder, factor_map,
     """
     structureID=os.path.split(column['Structure'])[-1]
     #remove metadata columns
-    slimmed_column=column.drop(labels=[x for x in ['Unnamed: 0', 'Index', 'Structure', 'classification', 'ID'] if x in column.index])
+    slimmed_column=column.drop(labels=[x for x in ['Unnamed: 0', 'Index', 'Structure', 'classification', 'ID', 'Brace_ID'] if x in column.index])
+    #print(slimmed_column)
     #factorise using the training factor_map set and cut the data to the hardstop if > hardstop
     factorised_column=slimmed_column.apply(lambda x: factor_map.get(x, x))[:deep_learning_hardstop].astype('float32')    
     if len(factorised_column) < deep_learning_hardstop:
@@ -505,6 +506,7 @@ def classify_with_threshold(model, column, threshold, label_encoder, factor_map,
         factorised_column = pd.concat([factorised_column, pd.Series([0] * (deep_learning_hardstop - len(factorised_column)))])
     #reshape data for prediction
     input_data = np.array(factorised_column).reshape(1, -1)
+    #print(input_data[0:20])
     # predict using the reshaped input data
     input_data=np.asarray(input_data).astype('float32')
     predicted_probs = model.predict(input_data)
