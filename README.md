@@ -80,7 +80,7 @@ To scan a directory of predicted algal proteins using the default trained model:
 python src/confers.py
 --pdb_folder Test_pdbs_mature
 --outpath test_results
---model_dir FedeAI_1pt5AE
+--model_dir FedeAI_1pt5AEv2
 --classification_threshold 0.5
 --first_N 3
 ```
