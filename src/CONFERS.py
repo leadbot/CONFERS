@@ -208,7 +208,7 @@ def output_file(positive_hit_list, outpath):
 
     """
     ###Write filenames of positive identifications to text file for futher scrutiny
-    f=open(os.path.join(outpath, "LYFE_out_LPMO_pdbs.txt"), 'w')
+    f=open(os.path.join(outpath, "_out_LPMO_pdbs.txt"), 'w')
     for file in positive_hit_list:
         f.write(str(file)+'\n')
     f.close()
@@ -682,7 +682,7 @@ def main(folder, outpath, file_range,
                 if output and LYFE_file is None:
                     if i == 0 and brace == 0:
                         # Write header
-                        LYFE_file = open_new_file(os.path.join(outpath, fileprefix + "LYFE_output.csv"), 'a', updated_header, openfiles, report_secondary_structue)
+                        LYFE_file = open_new_file(os.path.join(outpath, fileprefix + "_output.csv"), 'a', updated_header, openfiles, report_secondary_structue)
 
                 append_to_file(LYFE_file, updated_metadata)
                 
@@ -696,7 +696,7 @@ def main(folder, outpath, file_range,
 
                         if output:
                             if DLi == 0:
-                                LYFE_DL_file = open_new_file(os.path.join(outpath, fileprefix + "LYFE_classifications.csv"), 'a', updated_header, openfiles, report_secondary_structue)
+                                LYFE_DL_file = open_new_file(os.path.join(outpath, fileprefix + "_classifications.csv"), 'a', updated_header, openfiles, report_secondary_structue)
                             append_to_file(LYFE_DL_file, updated_DLmetadata)
                         
                         DLi += 1
@@ -725,21 +725,21 @@ if __name__ == "__main__":
 
     # Add arguments for each of the parameters
     parser.add_argument('--pdb_folder', type=str, required=True, help='Path to the folder containing PDB files')
-    parser.add_argument('--first_N', type=int, default=30, help='First N residues to search for N terminal histidine')
+    parser.add_argument('--first_N', type=int, default=3, help='First N residues to search for N terminal histidine')
     parser.add_argument('--max_distance', type=int, default=11, help='Max histidine distance')
     parser.add_argument('--min_his_his_dist', type=int, default=5, help='Min his-his distance')
     parser.add_argument('--min_beta_strands', type=int, default=1, help='Min beta strands')
     parser.add_argument('--min_beta_length', type=int, default=3, help='Min beta length')
     parser.add_argument('--output', type=bool, default=True, help='Generate output')
     parser.add_argument('--folder', type=str, default="", help='Output folder')
-    parser.add_argument('--outpath', type=str, default="FINAL_PAPER_LYFE_output_", help='Output path for filenames')
+    parser.add_argument('--outpath', type=str, default="CONFERS_output_", help='Output path for filenames')
     parser.add_argument('--report_secondary_structue', type=bool, default=True, help='Report secondary structure')
     parser.add_argument('--deep_learning', type=bool, default=True, help='Use deep learning')
-    parser.add_argument('--classification_threshold', type=float, default=0.7, help='Classification threshold')
+    parser.add_argument('--classification_threshold', type=float, default=0.5, help='Classification threshold')
     parser.add_argument('--graphical_output', type=bool, default=True, help='Generate graphical output')
     parser.add_argument('--sstype', type=bool, default=True, help='Simple secondary structure (True) or complex (False)')
     parser.add_argument('--file_range', type=str, default=None, help='Range of files to parse (e.g., 0-20000)')
-    parser.add_argument('--model_name', type=str, default="FedeAI_1pt6AE", help='Name of the subfolder in Model_data containing the model files')
+    parser.add_argument('--model_name', type=str, default="FedeAI_1pt5AEv2", help='Name of the subfolder in Model_data containing the model files')
 
     # parse the arguments
     args = parser.parse_args()
