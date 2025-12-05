@@ -37,7 +37,7 @@ The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts
 
 **Basic Command**
 ```
-python src/CONFERS.py --pdb_folder Test_pdbs_immature --outpath test_results/
+python src/CONFERS.py --pdb_folder Test_pdbs/Test_pdbs_immature --outpath test_results/
 ```
 
 ### Arguments & Usage
@@ -77,12 +77,7 @@ Model 1.6 (default; model for immature structures with signal peptides, recommen
 **Example Workflow**\
 To scan a directory of predicted algal proteins using the default trained model:
 ```
-python src/confers.py
---pdb_folder Test_pdbs_mature
---outpath test_results
---model_dir FedeAI_1pt5AEv2
---classification_threshold 0.5
---first_N 3
+python src/confers.py --pdb_folder Test_pdbs/Test_pdbs_mature_LPMOs_only --outpath test_results --model_name FedeAI_1pt5AEv2 --classification_threshold 0.5 --first_N 3
 ```
 
 **Outputs**\
