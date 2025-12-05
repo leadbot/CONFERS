@@ -37,7 +37,7 @@ The tool processes a folder of PDB files (e.g., AlphaFold predictions), extracts
 
 **Basic Command**
 ```
-python src/CONFERS.py --pdb_folder Test_pdbs/Test_pdbs_immature --outpath test_results/
+python src/confers.py --pdb_folder Test_pdbs/Test_pdbs_mature_LPMOs_only --outpath test_results --model_name FedeAI_1pt5AEv2 --classification_threshold 0.7 --first_N 3
 ```
 
 ### Arguments & Usage
@@ -47,13 +47,13 @@ python src/CONFERS.py --pdb_folder Test_pdbs/Test_pdbs_immature --outpath test_r
 | :--- | :--- | :--- |
 | `--pdb_folder` | **Required** | Path to the folder containing `.pdb` files to analyze. |
 | `--outpath` | `CONFERS_` | Directory prefix/path where output CSVs and logs will be saved. |
-| `--model_dir` | `FedeAI_1pt6AE` | Name of the subfolder in `Model_data/` containing the trained model. |
-| `--file_range` | `None` | Process a subset of files (e.g., `0-100`). Useful for parallel array jobs. |
+| `--model_name` | `FedeAI_1pt5AEv2` | Name of the subfolder in `Model_data/` containing the trained model. |
+| `--file_range` | `None` | Process a subset of files (e.g., `0-100`). Use for parallel array data mining jobs. |
 
 #### Structural Parameters
 | Argument | Default | Description |
 | :--- | :--- | :--- |
-| `--first_N` | `30` | Search for the first Histidine within the first N residues (N-terminal logic). |
+| `--first_N` | `3` | Search for the first Histidine within the first N residues (N-terminal logic). |
 | `--max_distance` | `11` | Max allowed distance (Å) between Histidines in the brace. |
 | `--min_his_his_dist` | `5` | Minimum sequence distance (residues) between the two Histidines. |
 | `--min_beta_strands` | `1` | Minimum number of beta-strands required to consider the fold. |
@@ -63,7 +63,7 @@ python src/CONFERS.py --pdb_folder Test_pdbs/Test_pdbs_immature --outpath test_r
 | Argument | Default | Description |
 | :--- | :--- | :--- |
 | `--deep_learning` | `True` | Perform classification using the neural network (`True`/`False`). |
-| `--classification_threshold`| `0.7` | Probability threshold (0.0-1.0) for a positive classification. |
+| `--classification_threshold`| `0.5` | Probability threshold (0.0-1.0) for a positive classification. |
 | `--report_secondary_structue`| `True` | Include detailed secondary structure metrics in the output CSV. |
 | `--graphical_output` | `True` | Generate plots for classifications (`True`/`False`). |
 | `--sstype` | `True` | Secondary structure complexity: `True` for simple, `False` for complex (DSSP detailed). |
@@ -72,12 +72,12 @@ python src/CONFERS.py --pdb_folder Test_pdbs/Test_pdbs_immature --outpath test_r
 **Models**\
 We provide two models:\
 Model 1.5 (model for mature structures lacking signal peptides, recommended first_N = 3)\
-Model 1.6 (default; model for immature structures with signal peptides, recommended first_N = 30)
+Model 1.6 (default; model for immature structures with signal peptides, recommended first_N = 30) [IN TESTING]
 
-**Example Workflow**\
-To scan a directory of predicted algal proteins using the default trained model:
+**Example Workflow IMMATURE STRUCTURES**\
+To scan a directory of predicted algal proteins using the pre-trained model:
 ```
-python src/confers.py --pdb_folder Test_pdbs/Test_pdbs_mature_LPMOs_only --outpath test_results --model_name FedeAI_1pt5AEv2 --classification_threshold 0.5 --first_N 3
+python src/CONFERS.py --pdb_folder Test_pdbs/Test_pdbs_immature --outpath test_results/ --model_name FedeAI_1pt6AE --first_N 30 --max_distance 15 --classification_threshold 0.5 
 ```
 
 **Outputs**\
@@ -88,6 +88,11 @@ The tool generates two primary CSV files in your --outpath:\
 *_CONFERS_classifications.csv: Contains only the proteins identified as targets (e.g., LPMOs) by the deep learning model, along with their predicted family class.\
 \
 Optional toggle for graphical output to interrogate and interpret classifications.
+
+**Updates/Notes**
+Model 1.5v2 is complete.
+Model 1.5v2 will be re-trained and updated as and when substrates are found for any new families\.
+Model 1.6 (identifying LPMOs that have abberant signal peptides for application to e.g. AlphaFold database) is ongoing\.
 
 **License**\
 This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).\
